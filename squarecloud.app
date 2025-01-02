@@ -1,0 +1,5 @@
+DISPLAY_NAME=Parcao
+MAIN=main.py
+MEMORY=256
+VERSION=recommended
+AUTORESTART=true

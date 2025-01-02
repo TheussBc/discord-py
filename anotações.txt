@@ -1,0 +1,126 @@
+pip freeze > requirements.txt
+
+==================================================================================================================================================
+
+@bot.command() # Embeds
+async def enviar_embed(ctx:commands.Context):
+    embed_principal = discord.Embed(title='Salve! Titulo da Embed', 
+    description='Essa é a descrição piazada!')
+
+    #embed_principal.set_image(url='https://s.dicio.com.br/imagem.png')
+
+    imagem_arquivo = discord.File('imagens/theus.png', 'theus.png')
+    embed_principal.set_image(url="attachment://theus.png")
+
+    thumb_arquivo = discord.File('imagens/parcao.jpg', 'parcao.jpg')
+    embed_principal.set_thumbnail(url='attachment://parcao.jpg')
+
+    embed_principal.set_footer(text='Esse é o footer')
+
+    embed_principal.color = discord.Color.from_rgb(3, 255, 185)
+
+    autor_embed_foto = discord.File('imagens/eu.jpg', 'eu.jpg')
+    embed_principal.set_author(name='Theus', url='https://www.instagram.com/matheuspiresbc/?hl=pt-br', icon_url='attachment://eu.jpg') # url é opcional
+
+    embed_principal.add_field(name='Moedas', value=10, inline=False)
+    embed_principal.add_field(name='Série favorita', value='La casa de papel', inline=False)
+    embed_principal.add_field(name='Rank', value='Ouro', inline=False)
+
+    await ctx.reply(files=[imagem_arquivo, thumb_arquivo, autor_embed_foto], embed=embed_principal) # se não for arquivo, não precisa utilizar o files. Caso seja apenas 1 imagem, utilize file no singular
+
+==================================================================================================================================================
+
+discord.Member:
+
+    1 - Informações Gerais:
+        membro.id: O ID do membro (único).
+        membro.name: Nome de usuário do membro.
+        membro.display_name: Nome de exibição do membro (pode ser diferente do nome de usuário, dependendo do apelido no servidor).
+        membro.discriminator: Os quatro dígitos que acompanham o nome do usuário (por exemplo, #1234).
+        membro.mention: Menciona o membro no formato @nome para ser pingado.
+        membro.avatar.url: URL do avatar do membro.
+        membro.bot: Indica se o membro é um bot (True ou False).
+        membro.created_at: Data em que a conta foi criada.
+        membro.joined_at: Data em que o membro entrou no servidor.
+
+    2 - Permissões e Status:
+        membro.status: Status atual do membro (online, offline, idle, dnd).
+        membro.activity: Atividade atual do membro (por exemplo, o jogo ou programa que está utilizando).
+        membro.roles: Lista dos cargos (roles) do membro no servidor.
+        membro.guild_permissions: Permissões do membro no servidor.
+        membro.voice: Informação sobre o estado de voz do membro (se está em um canal de voz, mute, etc.).
+    
+    3 - Servidor e Cargos:
+        membro.guild: O servidor (guild) ao qual o membro pertence.
+        membro.top_role: O cargo mais alto do membro no servidor.
+        membro.nick: O apelido (nickname) do membro no servidor, se houver.
+        membro.is_on_mobile(): Retorna se o membro está conectado a partir de um dispositivo móvel.
+
+==================================================================================================================================================
+CTX
+
+ctx.author: O usuário que invocou o comando.
+ctx.guild: O servidor onde o comando foi invocado.
+ctx.message: A mensagem que invocou o comando.
+ctx.channel: O canal onde o comando foi invocado.
+ctx.bot: A instância do bot que está executando o comando.
+ctx.prefix: O prefixo usado para invocar o comando.
+
+
+channel = ctx.channel
+    
+    1 - Geral (aplicável para todos os tipos de canais):
+        channel.id: ID do canal.
+        channel.name: Nome do canal.
+        channel.mention: Menção para o canal.
+        channel.category: Categoria do canal, se houver.
+        channel.position: Posição do canal na lista de canais.
+        channel.created_at: Data de criação do canal.
+        channel.is_nsfw(): Se o canal é marcado como NSFW.
+        channel.type: Tipo do canal (texto, voz, categoria, etc.).
+   
+    2 - Canais de Texto:
+        channel.topic: Tópico do canal (se houver).
+        channel.slowmode_delay: Modo lento (delay entre mensagens) do canal.
+        channel.permissions_synced: Se as permissões estão sincronizadas com a categoria.
+        channel.default_auto_archive_duration: Duração padrão para arquivamento automático de tópicos.
+        channel.pins(): Mensagens fixadas no canal.
+    
+    3 - Canais de Voz:
+        channel.members: Lista de membros conectados ao canal de voz.
+        channel.bitrate: Taxa de bits do canal de voz.
+        channel.user_limit: Limite de usuários no canal.
+        channel.video_quality_mode: Qualidade de vídeo no canal.
+    
+    4 - Categorias:
+        channel.channels: Lista de canais dentro da categoria.
+
+==================================================================================================================================================
+
+channel = interaction.channel
+
+    Geral (aplicável para todos os tipos de canais):
+        interaction.channel.id: ID do canal.
+        interaction.channel.name: Nome do canal.
+        interaction.channel.mention: Menção para o canal.
+        interaction.channel.category: Categoria do canal, se houver.
+        interaction.channel.position: Posição do canal na lista de canais.
+        interaction.channel.created_at: Data de criação do canal.
+        interaction.channel.is_nsfw(): Se o canal é marcado como NSFW.
+        interaction.channel.type: Tipo do canal (texto, voz, categoria, etc.).
+
+    Canais de Texto:
+        interaction.channel.topic: Tópico do canal (se houver).
+        interaction.channel.slowmode_delay: Modo lento (delay entre mensagens) do canal.
+        interaction.channel.permissions_synced: Se as permissões estão sincronizadas com a categoria.
+        interaction.channel.default_auto_archive_duration: Duração padrão para arquivamento automático de tópicos.
+        await interaction.channel.pins(): Mensagens fixadas no canal.
+
+    Canais de Voz:
+        interaction.channel.members: Lista de membros conectados ao canal de voz.
+        interaction.channel.bitrate: Taxa de bits do canal de voz.
+        interaction.channel.user_limit: Limite de usuários no canal.
+        interaction.channel.video_quality_mode: Qualidade de vídeo no canal.
+
+    Categorias:
+        interaction.channel.channels: Lista de canais dentro da categoria.
